@@ -59,7 +59,7 @@ var datos ={
       trivia.number=1;
     },
     start: function(){
-      
+      debugger;
        if (this.stage===0){
          $("#answer4").html('<button type="button" id="start" class="btn btn-outline-secondary">  START  </button>');
        }
@@ -72,8 +72,6 @@ var datos ={
       this.intervalId = setInterval(this.decrement, 1000);
       },        
     run:function(){
-      $(".question").html("");
-
       trivia.runtimer();
       this.stage=1;
     },  
@@ -127,7 +125,7 @@ $("#answer4").on("click",function(){
     debugger;
     datos.fillquestion(0);
     trivia.run();
-    trivia.q++;
+    trivia.q=10;
   }
   else {
     trivia.correct(3);}
