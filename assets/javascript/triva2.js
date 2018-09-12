@@ -1,9 +1,9 @@
 trivia={
     run:function(){
-        $(".question").html("vive");
+        $("#answer1").html("vive");
     }
 }
 
-$(".question").on("click",trivia.run);
+$("#answer2").on("click",trivia.run);
 
 

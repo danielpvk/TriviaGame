@@ -25,15 +25,15 @@ var datos ={
      results:[1,0,3,2,2,3,2,0,1,0,3],
      fillquestion:function(i){
        i=10-i;
-       $("#question").html("<h2>"+this.questions[i]+"</h2>");
+       $(".question").html("<h2>"+this.questions[i]+"</h2>");
        $("#answer1").html("<h3>"+this.answers[i*4+0]+"</h3>");
        
        $("#answer2").html("<h3>"+this.answers[i*4+1]+"</h3>");
        
        $("#answer3").html("<h3>"+this.answers[i*4+2]+"</h3>");
-       
        $("#answer4").html("<h3>"+this.answers[i*4+3]+"</h3>");
-       correctAnswer=this.results[i];
+   
+        correctAnswer=this.results[i];
       debugger;
      }
  };
@@ -56,18 +56,16 @@ var datos ={
          this.bad++;
          this.what--;
       }
+      trivia.number=1;
     },
     start: function(){
-      debugger;
+      
        if (this.stage===0){
-         $(".question").html('<button type="button" id="start" class="btn btn-outline-secondary">  START  </button>');
+         $("#answer4").html('<button type="button" id="start" class="btn btn-outline-secondary">  START  </button>');
        }
        else {
         
-         $("#answer1").on("click",trivia.correct(0));
-         $("#answer2").on("click",trivia.correct(1));
-         $("#answer3").on("click",trivia.correct(2));
-         $("#answer4").on("click",trivia.correct(3));
+
        }
     },
     runtimer: function(){
@@ -98,11 +96,12 @@ var datos ={
       else{
             trivia.q=10;
            clearInterval(trivia.intervalId);
-            $("#answer1").html("<h3> Correct answers : "+this.good+"</h3>");
-            $("#answer2").html("<h3> Incorrect answers : "+this.bad+"</h3>");   
-            $("#answer3").html("<h3> Unanswered : "+this.what+"</h3>");
-            $("#answer4").html("<h3> Unanswered : "+"</h3>");
+            $("#answer1").html("<h3> Correct answers : "+trivia.good+"</h3>");
+            $("#answer2").html("<h3> Incorrect answers : "+trivia.bad+"</h3>");   
+            $("#answer3").html("<h3> Unanswered : "+trivia.what+"</h3>");
+            $("#answer4").html('<button type="button" id="start" class="btn btn-outline-secondary">  START  </button>');
             alert("juego terminado");
+            trivia.stage=0;
           }
       
     },
@@ -114,5 +113,23 @@ var datos ={
 
 trivia.start();
 
-$(".question").on("click", trivia.run);
+$("#answer1").on("click",function(){
+  trivia.correct(0);
+});
+$("#answer2").on("click",function(){
+  trivia.correct(1);
+});
+$("#answer3").on("click",function(){
+  trivia.correct(2);
+});
+$("#answer4").on("click",function(){
+  if (trivia.stage==0){
+    debugger;
+    datos.fillquestion(0);
+    trivia.run();
+    trivia.q++;
+  }
+  else {
+    trivia.correct(3);}
+});
 
