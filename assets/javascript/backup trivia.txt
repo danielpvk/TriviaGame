@@ -1,4 +1,4 @@
-var correctAnswer=0;
+//var correctAnswer=0;
 var datos ={
      questions:["On which TV show appeared for the first time Ariadna Grande?",
      'What is the name of the high school that Ryan, Marissa, Seth, and Summer attended on “The O.C.”?',
@@ -25,16 +25,16 @@ var datos ={
      results:[1,0,3,2,2,3,2,0,1,0,3],
      fillquestion:function(i){
        i=10-i;
-       $("#question").html("<h2>"+this.questions[i]+"</h2>");
-       $("#answer1").html("<h3>"+this.answers[i*4+0]+"</h3>");
+       $(".question").html("<h2>"+this.questions[i]+"</h2>");
+       $(".answer1").html("<h3>"+this.answers[i*4+0]+"</h3>");
        
-       $("#answer2").html("<h3>"+this.answers[i*4+1]+"</h3>");
+       $(".answer2").html("<h3>"+this.answers[i*4+1]+"</h3>");
        
-       $("#answer3").html("<h3>"+this.answers[i*4+2]+"</h3>");
+       $(".answer3").html("<h3>"+this.answers[i*4+2]+"</h3>");
        
-       $("#answer4").html("<h3>"+this.answers[i*4+3]+"</h3>");
+       $(".answer4").html("<h3>"+this.answers[i*4+3]+"</h3>");
        correctAnswer=this.results[i];
-      debugger;
+       debugger;
      }
  };
  
@@ -65,19 +65,20 @@ var datos ={
        else {
         
          $("#answer1").on("click",trivia.correct(0));
-         $("#answer2").on("click",trivia.correct(1));
-         $("#answer3").on("click",trivia.correct(2));
-         $("#answer4").on("click",trivia.correct(3));
+         $(".answer2").on("click",trivia.correct(1));
+         $(".answer3").on("click",trivia.correct(2));
+         $(".answer4").on("click",trivia.correct(3));
        }
     },
     runtimer: function(){
       this.intervalId = setInterval(this.decrement, 1000);
-      },        
+    
+    },        
     run:function(){
       $(".question").html("");
 
       trivia.runtimer();
-      this.stage=1;
+      trivia.stage=1;
     },  
     
     decrement: function() {
@@ -86,7 +87,7 @@ var datos ={
       
       if (trivia.q>0){
             if (trivia.number>0){
-              $("#time-remaining").html("<h2>" + trivia.number + "</h2>");
+            $("#time-remaining").html("<h2>" + trivia.number + "</h2>");
             }
             else {
               $("#time-remaining").html("<h2>" + trivia.number + "</h2>");
@@ -97,11 +98,11 @@ var datos ={
      }
       else{
             trivia.q=10;
-           clearInterval(trivia.intervalId);
-            $("#answer1").html("<h3> Correct answers : "+this.good+"</h3>");
-            $("#answer2").html("<h3> Incorrect answers : "+this.bad+"</h3>");   
-            $("#answer3").html("<h3> Unanswered : "+this.what+"</h3>");
-            $("#answer4").html("<h3> Unanswered : "+"</h3>");
+            clearInterval(trivia.intervalId);
+           // $(".answer1").html("<h3> Correct answers : "+this.good+"</h3>");
+           // $(".answer2").html("<h3> Incorrect answers : "+this.bad+"</h3>");   
+          //  $(".answer3").html("<h3> Unanswered : "+this.what+"</h3>");
+          //  $(".answer4").html("<h3> Unanswered : "+"</h3>");
             alert("juego terminado");
           }
       
@@ -111,8 +112,7 @@ var datos ={
 
  
 
-
 trivia.start();
 
-$(".question").on("click", trivia.run);
+$("#question").on("click", trivia.run());
 
