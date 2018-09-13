@@ -35,7 +35,8 @@ p{
     color:#ffffff;
 }
 .title{
-    width:100%
+    width:100%;
+    left:0;
 }
 
 
@@ -51,4 +52,17 @@ p{
     .container{
         width:90%;
     }
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height:200px;
+    background:#ccc;
+    
+}
+.imgft{
+    width:100%
 }

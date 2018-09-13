@@ -24,7 +24,8 @@ var datos ={
         "Chevy Citation","Ford Explorer","Nissan Cube","1Pontiac Aztek"],
      results:[1,0,3,2,2,3,2,0,1,0,3],
      fillquestion:function(i){
-       i=10-i;
+      debugger;
+       i=9-i;
        $(".question").html("<h2>"+this.questions[i]+"</h2>");
        $("#answer1").html("<h3>"+this.answers[i*4+0]+"</h3>");
        
@@ -34,20 +35,20 @@ var datos ={
        $("#answer4").html("<h3>"+this.answers[i*4+3]+"</h3>");
    
         correctAnswer=this.results[i];
-      debugger;
+      
      }
  };
  
  var trivia={
     stage:0,
-    number : 5,
+    number :30,
     q:10,
     results:[],
     good:0,
     bad:0,
     what:10,
     correct: function(c){
-      debugger;
+
       if (c===correctAnswer){
          this.good++;
          this.what--;
@@ -59,7 +60,7 @@ var datos ={
       trivia.number=1;
     },
     start: function(){
-      debugger;
+  
        if (this.stage===0){
          $("#answer4").html('<button type="button" id="start" class="btn btn-outline-secondary">  START  </button>');
        }
@@ -77,22 +78,23 @@ var datos ={
     },  
     
     decrement: function() {
-      
+   
       trivia.number--;
       
-      if (trivia.q>0){
+      if (trivia.q>=0){
             if (trivia.number>0){
               $("#time-remaining").html("<h2>" + trivia.number + "</h2>");
             }
             else {
               $("#time-remaining").html("<h2>" + trivia.number + "</h2>");
-              trivia.number=5;
-              datos.fillquestion(trivia.q);
+              trivia.number=30;
               trivia.q--;
+              datos.fillquestion(trivia.q);
+              
             }
      }
       else{
-            trivia.q=10;
+            trivia.q=9;
            clearInterval(trivia.intervalId);
             $("#answer1").html("<h3> Correct answers : "+trivia.good+"</h3>");
             $("#answer2").html("<h3> Incorrect answers : "+trivia.bad+"</h3>");   
@@ -123,9 +125,10 @@ $("#answer3").on("click",function(){
 $("#answer4").on("click",function(){
   if (trivia.stage==0){
     debugger;
-    datos.fillquestion(0);
+    trivia.q=9;
+    datos.fillquestion(trivia.q);
     trivia.run();
-    trivia.q=10;
+
   }
   else {
     trivia.correct(3);}
